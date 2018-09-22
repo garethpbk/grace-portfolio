@@ -33,14 +33,20 @@ exports.createPages = ({ graphql, actions }) => {
         if (result.errors) {
           reject(result.errors);
         }
+        const links = [];
+        result.data.allContentfulGraceArt.edges.map(uno => {
+          return links.push(uno.node.name.toLowerCase().replace(/ /g, '-'));
+        });
 
-        result.data.allContentfulGraceArt.edges.forEach(edge => {
-          console.log(edge.node.name);
+        result.data.allContentfulGraceArt.edges.forEach((edge, index) => {
+          const slug = edge.node.name.toLowerCase().replace(/ /g, '-');
           createPage({
-            path: `/${edge.node.id}`,
+            path: `/${slug}`,
             component: artTemplate,
             context: {
               edge,
+              index,
+              links,
             },
           });
         });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import { injectGlobal } from 'styled-components';
 import 'typeface-raleway';
 import 'typeface-lato';
@@ -9,10 +9,14 @@ import Home from '../components/home';
 
 const IndexPage = data => {
   const art = data.data.allContentfulGraceArt.edges;
+  const links = [];
+  art.map(uno => {
+    return links.push(uno.node.name.toLowerCase().replace(/ /g, '-'));
+  });
 
   return (
     <Layout>
-      <Home art={art} />
+      <Home art={art} links={links} />
     </Layout>
   );
 };
@@ -38,15 +42,29 @@ injectGlobal`
     color: grey;
     text-decoration: none;
 
+    display: block;
+
     &:hover {
       color: blueviolet;
       text-decoration: overline;
+
+      h1 {
+        color: blueviolet;
+      }
     }
+
+    h1 {
+      color: #323232;
+    }
+  }
+
+  img {
+    max-width: 100%;
   }
 `;
 
 export const ALL_ART = graphql`
-  query ALL_ART {
+  query {
     allContentfulGraceArt {
       edges {
         node {
