@@ -25,6 +25,12 @@ exports.createPages = ({ graphql, actions }) => {
                     url
                   }
                 }
+                bigImage {
+                  title
+                  file {
+                    url
+                  }
+                }
               }
             }
           }

@@ -52,13 +52,35 @@ const Controls = styled.div`
 `;
 
 const Base = props => {
-  const { index, links } = props;
+  const { index, links, art } = props;
 
-  let prevLink = links[index - 1];
-  let nextLink = links[index + 1];
+  if (art) {
+    let prevLink = links[index - 1];
+    let nextLink = links[index + 1];
 
-  if (!prevLink) prevLink = links[links.length - 1];
-  if (!nextLink) nextLink = links[0];
+    if (!prevLink) prevLink = links[links.length - 1];
+    if (!nextLink) nextLink = links[0];
+
+    return (
+      <Container>
+        <Left>
+          <Link to="/">
+            <h1>Grace Mae Huddleston</h1>
+          </Link>
+          <Nav>
+            <Link to="">Work</Link>
+            <Link to="/about">About</Link>
+            <Link to="">Find Me</Link>
+          </Nav>
+          <Controls>
+            <Link to={prevLink}>Previous</Link>
+            <Link to={nextLink}>Next</Link>
+          </Controls>
+        </Left>
+        <Right>{props.render()}</Right>
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -68,14 +90,10 @@ const Base = props => {
         </Link>
         <Nav>
           <Link to="">Work</Link>
-          <Link to="">CV</Link>
-          <Link to="">About</Link>
-          <Link to="">Contact</Link>
+          <Link to="/about">About</Link>
+          <Link to="">Find Me</Link>
         </Nav>
-        <Controls>
-          <Link to={prevLink}>Previous</Link>
-          <Link to={nextLink}>Next</Link>
-        </Controls>
+        <Controls />
       </Left>
       <Right>{props.render()}</Right>
     </Container>

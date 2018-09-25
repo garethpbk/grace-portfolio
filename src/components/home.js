@@ -9,6 +9,7 @@ export default props => {
     <Base
       links={links}
       index={0}
+      art={true}
       render={() => (
         <div>
           <StaticArt data={props.art[0].node} />

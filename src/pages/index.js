@@ -81,6 +81,12 @@ export const ALL_ART = graphql`
               url
             }
           }
+          bigImage {
+            title
+            file {
+              url
+            }
+          }
         }
       }
     }
