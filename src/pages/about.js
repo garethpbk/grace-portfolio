@@ -1,17 +1,39 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
+import styled from 'styled-components';
+
 import Layout from '../components/layout';
-import Base from '../components/base';
+import { Container, Left, Right } from '../components/base';
+import Nav from '../components/Nav';
+
+const AboutWrapper = styled.main`
+  padding: 0 50px;
+
+  p {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+`;
 
 const About = data => {
   const aboutText =
     data.data.allContentfulGraceText.edges[0].node.aboutText.aboutText;
 
-  console.log(aboutText);
-
   return (
     <Layout>
-      <Base art={false} render={() => <div>{aboutText}</div>} />
+      <Container>
+        <Left>
+          <Link to="/">
+            <h1>Grace Mae Huddleston</h1>
+          </Link>
+          <Nav />
+        </Left>
+        <Right>
+          <AboutWrapper>
+            <p>{aboutText}</p>
+          </AboutWrapper>
+        </Right>
+      </Container>
     </Layout>
   );
 };
