@@ -2,6 +2,14 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
+const NavWrapper = styled.nav`
+  min-height: 75vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
@@ -24,7 +32,7 @@ const Controls = styled.div`
 `;
 
 export default props => (
-  <>
+  <NavWrapper>
     <Nav>
       <Link to="/work">Work</Link>
       <Link to="/about">About</Link>
@@ -38,5 +46,5 @@ export default props => (
     ) : (
       <Controls />
     )}
-  </>
+  </NavWrapper>
 );

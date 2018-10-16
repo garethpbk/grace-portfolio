@@ -11,6 +11,8 @@ const Gallery = styled.main`
 
   grid-template-columns: 33% 33% 33%;
   grid-gap: 15px;
+
+  padding: 0 50px;
 `;
 
 const Work = data => {
