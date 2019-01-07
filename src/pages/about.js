@@ -17,7 +17,11 @@ const AboutWrapper = styled.main`
 
 const About = data => {
   const aboutText =
-    data.data.allContentfulGraceText.edges[0].node.aboutText.aboutText;
+    data.data.contentfulGraceText.aboutText.childMarkdownRemark.html;
+
+  const createMarkup = () => {
+    return { __html: aboutText };
+  };
 
   return (
     <Layout>
@@ -29,9 +33,7 @@ const About = data => {
           <Nav />
         </Left>
         <Right>
-          <AboutWrapper>
-            <p>{aboutText}</p>
-          </AboutWrapper>
+          <AboutWrapper dangerouslySetInnerHTML={createMarkup()} />
         </Right>
       </Container>
     </Layout>
@@ -42,12 +44,10 @@ export default About;
 
 export const ABOUT_QUERY = graphql`
   query {
-    allContentfulGraceText {
-      edges {
-        node {
-          aboutText {
-            aboutText
-          }
+    contentfulGraceText {
+      aboutText {
+        childMarkdownRemark {
+          html
         }
       }
     }
